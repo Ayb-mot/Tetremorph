@@ -2,7 +2,7 @@
 Java Swing Chat Application, my end of studies project
 
 ## Login
-This is the login screen which is connected to a local database (MS Access)
+This is the login screen which is connected to a local database (MS Access) **
 ![Login Screen] (https://imgur.com/a/4X1lci5)
 
 ##Signup
