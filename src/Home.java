@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
@@ -210,9 +213,22 @@ public class Home extends JFrame {
 				else {
 					pwd_confirm.setText("Please enter a valid password!");
 				}
+													/*			Add to MS Access DataBase				*/
+				String email;
+				String password;
+				email = textField.getText();
+				password = passwordField.getText();
+				try {
+					Connection con = DriverManager.getConnection("jdbc:UCanAccess://C:\\Users\\Ken\\Documents\\JDBC1.mdb");
+					Statement stm = con.createStatement();
+					int add = stm.executeUpdate("insert into JDBC1 values ('"+email+"', '"+password+"')");
+				}
+				catch (Exception a) {
+					System.out.println("ERROR IN CONNECTION");
+				}
 
-/**		If the email and password match the requirements go to next phase and login
- *
+/*								If the email and password match the requirements go to next phase and login 												*/
+ /*
  *
  * 				 if (status) {
 					status = true;
@@ -232,6 +248,11 @@ public class Home extends JFrame {
 		btnLogin.setBackground(Color.GRAY);
 		btnLogin.setBounds(520, 557, 288, 37);
 		contentPane.add(btnLogin);
+		
+		JLabel JLabel3 = new JLabel("");
+		JLabel3.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel3.setBounds(489, 112, 145, 37);
+		contentPane.add(JLabel3);
 	}
 
 	private class SwingAction extends AbstractAction {
